@@ -5,9 +5,8 @@
              xmlns:cgv_viewmodels="clr-namespace:CGVModClient.ViewModels"
              xmlns:cgv_data="clr-namespace:CGVModClient.Data"
              x:Class="CGVModClient.Pages.GiveawayEventsPage"
-             x:DataType="cgv_viewmodels:GiveawayEventsViewModel"
-             Loaded="ContentPage_Loaded"
              Title="경품 이벤트 현황">
+
     <ContentPage.Resources>
         <Style x:Key="MyBorder" TargetType="Border">
             <Setter Property="Stroke" Value="LightGray"/>
@@ -30,40 +29,38 @@
         <Border Grid.Row="0" Style="{StaticResource MyBorder}">
             <Label Text="{Binding EventState}" VerticalOptions="Center"/>
         </Border>
-        <ListView Grid.Row="1"
-                  CachingStrategy="RecycleElementAndDataTemplate"
+        <CollectionView Grid.Row="1"     
                   ItemsSource="{Binding GiveawayEvents}"
-                  ItemTapped="ListView_ItemTapped"
-                  SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="cgv_data:GiveawayEvent">
-                    <ViewCell>
-                        <Grid ColumnDefinitions="1*,100"
-                              HeightRequest="60">
-                            <VerticalStackLayout Grid.Column="0" 
-                                                 VerticalOptions="Center"
-                                                 Margin="5">
-                                <Label Text="{Binding Title}"
-                                       Style="{StaticResource GiveawayEventNameLabel}"/>
-                                <Label Text="{Binding Period}"
-                                       Style="{StaticResource GiveawayEventPeriodLabel}"/>
-                            </VerticalStackLayout>
-                            <Border Grid.Column="1"
-                                    HeightRequest="30"
-                                    WidthRequest="100"
-                                    Stroke="Red">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10"/>
-                                </Border.StrokeShape>
-                                <Label Text="{Binding DDay}"
-                                       HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"
-                                       HeightRequest="30"/>
-                            </Border>
-                        </Grid>
-                    </ViewCell>
+                  SelectedItem="{Binding SelectedItem}"
+                  SelectionChangedCommand="{Binding CollectioItemSelectedCommand}"
+                  SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,100"
+                          HeightRequest="60">
+                        <VerticalStackLayout Grid.Column="0" 
+                                             VerticalOptions="Center"
+                                             Margin="5">
+                            <Label Text="{Binding Title}"
+                                   Style="{StaticResource GiveawayEventNameLabel}"/>
+                            <Label Text="{Binding Period}"
+                                   Style="{StaticResource GiveawayEventPeriodLabel}"/>
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1"
+                                HeightRequest="30"
+                                WidthRequest="100"
+                                Stroke="Red">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <Label Text="{Binding DDay}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   HeightRequest="30"/>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

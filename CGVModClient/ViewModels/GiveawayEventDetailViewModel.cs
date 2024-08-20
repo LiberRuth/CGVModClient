@@ -19,7 +19,17 @@ public partial class GiveawayEventDetailViewModel : ObservableObject
     public ObservableCollection<Theater> Theaters { get; private set; } = new ObservableCollection<Theater>();
 
     private GiveawayEventModel model;
-    
+
+    public GiveawayEventDetailViewModel(string value) 
+    {
+        InitializeAsync(value);
+    }
+
+    private async void InitializeAsync(string eventIndex)
+    {
+        await LoadAsync(eventIndex);
+    }
+
     public async Task LoadAsync(string eventIndex)
     {
         IsBusy = true;

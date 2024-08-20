@@ -2,16 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CGVModClient.Pages.MainPage"
+             xmlns:local="clr-namespace:CGVModClient.ViewModels"
              Title="CGV 도우미">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout Spacing="10">
         <Button x:Name="GoGiveawayEventListPageButton"
                 Text="경품현황판"
-                Clicked="GoGiveawayEventListPageButton_Clicked"/>
+                Command="{Binding GoGiveawayEventListPageCommand}"/>
         <Button x:Name="GoOpenNotificationButton"
                 Text="영화 예매 오픈 알림"
-                Clicked="GoOpenNotificationButton_Clicked"/>
+                Command="{Binding GoOpenNotificationCommand}"/>
         <Button x:Name="GoAutoGiveawaySignupPageButton"
                 Text="자동 선착순 경품 신청"
-                Clicked="GoAutoGiveawaySignupPageButton_Clicked"/>
+                Command="{Binding GoAutoGiveawaySignupCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

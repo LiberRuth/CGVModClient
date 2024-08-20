@@ -6,8 +6,7 @@
              xmlns:cgv_data="clr-namespace:CGVModClient.Data"
              x:Class="CGVModClient.Pages.GiveawayEventDetailPage"
              x:DataType="cgv_viewmodels:GiveawayEventDetailViewModel"
-             Title="{Binding Title,Mode=OneWay}"
-             Loaded="ContentPage_Loaded">
+             Title="{Binding Title,Mode=OneWay}">
     <ContentPage.Resources>
         <Style x:Key="MyBorder" TargetType="Border">
             <Setter Property="Stroke" Value="LightGray"/>

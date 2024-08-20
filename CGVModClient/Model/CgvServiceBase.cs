@@ -20,9 +20,10 @@ namespace CGVModClient.Model
 
         protected string Encrypt(string data)
         {
-            var bit = Encoding.UTF8.GetBytes(data);
-            var encryptResult = _aes.EncryptCbc(bit, _aes.IV);
-            return Convert.ToBase64String(encryptResult);
+            //var bit = Encoding.UTF8.GetBytes(data);
+            //var encryptResult = _aes.EncryptCbc(bit, _aes.IV);
+            //return Convert.ToBase64String(encryptResult);
+            return null!;
         }
 
         protected string Decrypt(string data)

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace CGVModClient.Pages;
 
 public partial class OpenNotificationSettingPage : ContentPage
