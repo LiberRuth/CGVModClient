@@ -64,8 +64,8 @@ public partial class GiveawayEventsViewModel : ObservableObject
     {
         if (SelectedItem != null)
         {
-            //await Application.Current!.MainPage!.Navigation.PushAsync(new GiveawayEventDetailPage($"?eventIndex={SelectedItem!.EventIndex}"));
-            Debug.WriteLine(SelectedItem!.EventIndex);
+            await Application.Current!.MainPage!.Navigation.PushAsync(new GiveawayEventDetailPage(SelectedItem!.EventIndex));
+            //Debug.WriteLine(SelectedItem!.EventIndex);
             SelectedItem = null;
         }
     }

@@ -39,6 +39,14 @@
 		<UseNativeHttpHandler Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">false</UseNativeHttpHandler>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <EnableLLVM>True</EnableLLVM>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <EnableLLVM>True</EnableLLVM>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -62,12 +70,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.57" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.72" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.72" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="MPowerKit.VirtualizeListView" Version="1.2.5" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace CGVModClient.ViewModels;
 
@@ -10,18 +11,24 @@ public partial class GiveawayEventDetailViewModel : ObservableObject
 
     [ObservableProperty]
     private bool isBusy = false;
+
     [ObservableProperty]
     private string title;
+
     [ObservableProperty]
     private string description;
+
     [ObservableProperty]
     public List<Area> areas;
-    public ObservableCollection<Theater> Theaters { get; private set; } = new ObservableCollection<Theater>();
+
+    [ObservableProperty]
+    public ObservableCollection<Theater> theaters;
 
     private GiveawayEventModel model;
 
     public GiveawayEventDetailViewModel(string value) 
     {
+        Theaters = new ObservableCollection<Theater>();
         InitializeAsync(value);
     }
 
@@ -39,7 +46,7 @@ public partial class GiveawayEventDetailViewModel : ObservableObject
         var theaterInfo = await service.Event.GetGiveawayTheaterInfoAsync(model.GiveawayIndex);
         Areas = theaterInfo.AreaList;
         foreach (var item in theaterInfo.TheaterList) {
-            Theaters.Add(item);
+            Theaters.Add(item);   
         }
         IsBusy = false;
     }

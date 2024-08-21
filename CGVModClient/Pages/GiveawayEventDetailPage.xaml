@@ -5,7 +5,6 @@
              xmlns:cgv_viewmodels="clr-namespace:CGVModClient.ViewModels"
              xmlns:cgv_data="clr-namespace:CGVModClient.Data"
              x:Class="CGVModClient.Pages.GiveawayEventDetailPage"
-             x:DataType="cgv_viewmodels:GiveawayEventDetailViewModel"
              Title="{Binding Title,Mode=OneWay}">
     <ContentPage.Resources>
         <Style x:Key="MyBorder" TargetType="Border">
@@ -33,7 +32,7 @@
                     Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
             <HorizontalStackLayout Spacing="5" BindableLayout.ItemsSource="{Binding Areas}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="cgv_data:Area">
+                    <DataTemplate>
                         <Button Padding="0" Text="{Binding AreaName}" WidthRequest="80"
                                 Command="{Binding Path=SelectAreaCommand, Source={RelativeSource AncestorType={x:Type cgv_viewmodels:GiveawayEventDetailViewModel}}}"
                                 CommandParameter="{Binding AreaCode}">
@@ -42,65 +41,55 @@
                 </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
         </ScrollView>
-        <ListView Grid.Row="2"
-                  x:Name="TheatersListView"
-                  CachingStrategy="RecycleElementAndDataTemplate"
+        <CollectionView Grid.Row="2"
                   ItemsSource="{Binding Theaters}"
                   SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="cgv_data:Theater">
-                    <ViewCell>
-                        <Grid RowDefinitions="1*,1*"
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="1*,1*"
                               HeightRequest="60"
                               Margin="5">
-                            <Label Grid.Row="0"
+                        <Label Grid.Row="0"
                                    Text="{Binding TheaterName}"
                                    Style="{StaticResource GiveawayEventNameLabel}"
                                    VerticalOptions="End"/>
-                            <HorizontalStackLayout Grid.Row="1"
+                        <HorizontalStackLayout Grid.Row="1"
                                                    VerticalOptions="Start">
-                                <Border HeightRequest="20" WidthRequest="30" StrokeThickness="0">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="40" />
-                                    </Border.StrokeShape>
-                                    <Border.Triggers>
-                                        <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type4">
-                                            <Setter Property="Border.BackgroundColor" Value="LightGrey"></Setter>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type3">
-                                            <Setter Property="Border.BackgroundColor" Value="#fb4357"></Setter>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type2">
-                                            <Setter Property="Border.BackgroundColor" Value="#25c326"></Setter>
-                                        </DataTrigger>
-                                    </Border.Triggers>
-                                    <Label Text="{Binding GiveawayRemainCount}"
-                                           FontSize="12"
-                                           TextColor="Black"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Center">
-                                    </Label>
-                                </Border>
-                                <Label Style="{StaticResource GiveawayEventPeriodLabel}"
+                            <Border HeightRequest="20" WidthRequest="30" StrokeThickness="0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="40" />
+                                </Border.StrokeShape>
+                                <Border.Triggers>
+                                    <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type4">
+                                        <Setter Property="Border.BackgroundColor" Value="LightGrey"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type3">
+                                        <Setter Property="Border.BackgroundColor" Value="#fb4357"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding CountTypeCode}" Value="type2">
+                                        <Setter Property="Border.BackgroundColor" Value="#25c326"></Setter>
+                                    </DataTrigger>
+                                </Border.Triggers>
+                            </Border>
+                            <Label Style="{StaticResource GiveawayEventPeriodLabel}"
                                        VerticalOptions="Center"
                                        Margin="5,-1,0,0">
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type4">
-                                            <Setter Property="Label.Text" Value="마감 되었습니다."></Setter>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type3">
-                                            <Setter Property="Label.Text" Value="재고 소진 임박 입니다."></Setter>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type2">
-                                            <Setter Property="Label.Text" Value="재고 보유 가능성이 높습니다."></Setter>
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
-                            </HorizontalStackLayout>
-                        </Grid>
-                    </ViewCell>
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type4">
+                                        <Setter Property="Label.Text" Value="마감 되었습니다."></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type3">
+                                        <Setter Property="Label.Text" Value="재고 소진 임박 입니다."></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label" Binding="{Binding CountTypeCode}" Value="type2">
+                                        <Setter Property="Label.Text" Value="재고 보유 가능성이 높습니다."></Setter>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

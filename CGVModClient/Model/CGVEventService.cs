@@ -9,7 +9,7 @@ public class CgvEventService : CgvServiceBase
 {
     private readonly HttpClient _client;
 
-    public CgvEventService(HttpClient client) 
+    public CgvEventService(HttpClient client)
     {
         _client = client;
     }
@@ -26,11 +26,12 @@ public class CgvEventService : CgvServiceBase
         var obj = JObject.Parse(content);
         var document = new HtmlDocument();
 
-        try {
+        try
+        {
             var htmlText = obj["d"]["List"].ToString().Replace(" onclick='detailEvent(this, \"False\")'", "");
-            document.LoadHtml(htmlText); 
+            document.LoadHtml(htmlText);
         }
-        catch (Exception e){ throw new InvalidDataException(content, e); }
+        catch (Exception e) { throw new InvalidDataException(content, e); }
 
         List<GiveawayEvent> list = new List<GiveawayEvent>();
         try
@@ -47,7 +48,7 @@ public class CgvEventService : CgvServiceBase
                 list.Add(giveawayEvent);
             }
         }
-        catch(Exception e) { throw new InvalidDataException(content, e); }
+        catch (Exception e) { throw new InvalidDataException(content, e); }
         return list.ToArray();
     }
 
@@ -61,7 +62,7 @@ public class CgvEventService : CgvServiceBase
         var content = await response.Content.ReadAsStringAsync();
         var obj = JObject.Parse(content);
         var model = obj["d"]?.ToObject<GiveawayEventModel>();
-        if(model == null) { throw new InvalidDataException(content); }
+        if (model == null) { throw new InvalidDataException(content); }
 
         return model;
     }
@@ -80,7 +81,7 @@ public class CgvEventService : CgvServiceBase
 
         foreach (var item in info.TheaterList)
         {
-            item.GiveawayRemainCount = Decrypt(item.EncCount);
+            //item.GiveawayRemainCount = Decrypt(item.EncCount);
         }
         return info;
     }
